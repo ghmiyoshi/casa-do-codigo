@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.alura.casadocodigo.loja.models.Produto;
 
 @Repository // Defini que o ProdutoDAO será gerenciado pelo Spring
-@Transactional // Defini que o nosso ProdutoDAO é uma classe Transancional 
+@Transactional // Defini que o nosso ProdutoDAO é uma classe Transacional 
 public class ProdutoDAO {
 
 	@PersistenceContext // O EntityManager é fornecido pelo Spring

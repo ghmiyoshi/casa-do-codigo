@@ -12,7 +12,7 @@ import br.com.alura.casadocodigo.loja.models.TipoPreco;
 @Controller
 public class ProdutosController {
 
-	@Autowired // O Spring cria o ProdutoDAO no Controller.
+	@Autowired // Pede para o Spring uma instância desse objeto que foi anotado (Injeção de dependência)
 	private ProdutoDAO produtoDao;
 
 	@RequestMapping("/produtos/form")

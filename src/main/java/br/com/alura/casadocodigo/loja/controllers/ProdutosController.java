@@ -20,7 +20,7 @@ import br.com.alura.casadocodigo.loja.models.TipoPreco;
 import br.com.alura.casadocodigo.loja.validation.ProdutoValidation;
 
 @Controller
-@RequestMapping("produtos")
+@RequestMapping("/produtos")
 public class ProdutosController {
 
 	@Autowired // Pede para o Spring uma instância desse objeto que foi anotado (Injeção de
@@ -35,7 +35,7 @@ public class ProdutosController {
 	}
 
 	@RequestMapping("/form")
-	public ModelAndView form() {
+	public ModelAndView form(Produto produto) {
 		/* ModelAndView - Além de retornar uma página, possibilita enviar objetos de
 		qualquer classe para essas páginas */
 		ModelAndView modelAndView = new ModelAndView("produtos/form");
@@ -50,7 +50,7 @@ public class ProdutosController {
 	@RequestMapping(method = RequestMethod.POST) // Method POST para gravar
 	public ModelAndView gravar(@Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes) { // RedirectAttributtes - Recurso do Spring que permite enviar informações entre requisições.
 		if(result.hasErrors()) {
-			return form();
+			return form(produto);
 		}
 		
 		System.out.println(produto);

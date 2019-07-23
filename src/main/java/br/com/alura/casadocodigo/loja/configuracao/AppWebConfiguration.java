@@ -10,16 +10,19 @@ import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import br.com.alura.casadocodigo.loja.controllers.HomeController;
 import br.com.alura.casadocodigo.loja.daos.ProdutoDAO;
 import br.com.alura.casadocodigo.loja.infra.FileSaver;
+import br.com.alura.casadocodigo.loja.models.CarrinhoCompras;
 
 @EnableWebMvc // Habilita o uso do SpringMVC no projeto
-@ComponentScan(basePackageClasses = { HomeController.class, ProdutoDAO.class, FileSaver.class }) // Configuração para o Spring encontrar os controllers e daos 
-public class AppWebConfiguration {
+@ComponentScan(basePackageClasses = { HomeController.class, ProdutoDAO.class, FileSaver.class, CarrinhoCompras.class }) // Configuração para o Spring encontrar/scannear os controllers, daos e outras classes 
+public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 
 	// Metodo que ajuda o SpringMVC a encontrar as views
 	// Retorna um objeto do tipo InternalResourceViewResolver (Resolvedor Interno de Recursos de View)
@@ -43,7 +46,6 @@ public class AppWebConfiguration {
 		return messageSource;
 	}
 	
-	
 	// Método para não ter que configurar o formato da data por anotações no model
 	@Bean
 	public FormattingConversionService mvcConversionService() {
@@ -60,5 +62,12 @@ public class AppWebConfiguration {
 	@Bean
 	public MultipartResolver multipartResolver() {
 		return new StandardServletMultipartResolver();
+	}
+	
+	// Por padrão, o Spring MVC nega o acesso à pasta resources. Consequentemente, o Tomcat não pode carregar os arquivos CSS e a página fica sem design.
+	// Por isso, a classe precisa estender a classe WebMvcConfigurerAdapter e implementar o método configureDefaultServletHandling para liberar o acesso à pasta resources.
+	@Override
+	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+	    configurer.enable();
 	}
 }

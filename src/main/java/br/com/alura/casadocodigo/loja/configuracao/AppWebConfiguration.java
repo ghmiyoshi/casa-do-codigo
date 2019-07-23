@@ -8,6 +8,8 @@ import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -40,6 +42,8 @@ public class AppWebConfiguration {
 		return messageSource;
 	}
 	
+	
+	// Método para não ter que configurar o formato da data por anotações no model
 	@Bean
 	public FormattingConversionService mvcConversionService() {
 		DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
@@ -49,5 +53,11 @@ public class AppWebConfiguration {
 		registrar.registerFormatters(conversionService);
 		
 		return conversionService;
+	}
+	
+	// Configuração do MultipartResolver para resolver esses arquivos de multiplos formatos
+	@Bean
+	public MultipartResolver multipartResolver() {
+		return new StandardServletMultipartResolver();
 	}
 }

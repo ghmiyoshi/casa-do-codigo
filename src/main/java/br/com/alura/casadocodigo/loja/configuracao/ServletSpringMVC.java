@@ -1,6 +1,8 @@
 package br.com.alura.casadocodigo.loja.configuracao;
 
 import javax.servlet.Filter;
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletRegistration.Dynamic;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -31,6 +33,14 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 		characterEncodingFilter.setEncoding("UTF-8");
 		
 		return new Filter[] {characterEncodingFilter}; 
+	}
+	
+	// Qual parte que será configurada como arquivo, vai ter barra, vai ter algo especifico dividindo o path, etc? 
+	// No caso não, queremos que do jeito que ele vem, seja enviado
+	@Override
+	protected void customizeRegistration(Dynamic registration) {
+		registration.setMultipartConfig(new MultipartConfigElement(""));
+	
 	}
 
 }

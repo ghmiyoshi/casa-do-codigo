@@ -11,7 +11,10 @@
 </head>
 <body>
 
-	<form:form action="${s:mvcUrl('PC#gravar').build() }" method="POST" commandName="produto">
+	<!-- Coloca form nos inputs para não perder as informações se um campo estiver inválido -->
+	<!-- Para isso funcionar, o método form() do ProdutoController precisa receber um Produto -->
+	<!-- enctype - Na hora de enviar o request, indicamos que o formulario está enviando um arquivo de multinformações texto e arquivo  -->
+	<form:form action="${s:mvcUrl('PC#gravar').build() }" method="POST" commandName="produto" enctype="multipart/form-data">
 		<div>
 			<label>Título</label>
 			<form:input path="titulo" />
@@ -33,15 +36,21 @@
 		<div>
 			<label>Data</label>
 			<form:input path="dataLancamento" />
+			<form:errors path="dataLancamento"/>
 		</div>
 		
 		<c:forEach items="${tipos}" var="tipoPreco" varStatus="status">
 			<div>
 				<label>${tipoPreco}</label>
 				<form:input path="precos[${status.index}].valor" />
-				<form:input type="hidden" path="precos[${status.index}].tipo" value="${tipoPreco}" />
+				<form:hidden path="precos[${status.index}].tipo" value="${tipoPreco}" />
 			</div>
-		</c:forEach>		
+		</c:forEach>
+		
+	<div>
+		<label>Sumário</label>
+		<input name="sumario" type="file">
+	</div>	
 		
 		<button type="submit">Cadastrar</button>
 	</form:form>

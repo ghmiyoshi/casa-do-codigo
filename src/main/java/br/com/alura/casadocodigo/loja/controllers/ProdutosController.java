@@ -11,6 +11,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -23,8 +24,7 @@ import br.com.alura.casadocodigo.loja.validation.ProdutoValidation;
 @RequestMapping("/produtos")
 public class ProdutosController {
 
-	@Autowired // Pede para o Spring uma instância desse objeto que foi anotado (Injeção de
-				// dependência)
+	@Autowired // Pede para o Spring uma instância desse objeto que foi anotado (Injeção de dependência)
 	private ProdutoDAO produtoDao;
 	
 	/* O Binder é o responsável por conectar duas coisas. Por exemplo, os dados do formulário com o objeto da classe Produto
@@ -48,7 +48,9 @@ public class ProdutosController {
 	/* @Valid -  Faz com que o produto seja validado
 	BindingResult - Pega os erros obtidos durante a validação. Para que isso funcione, é necessário adicionar logo em seguida do objeto que será validado */
 	@RequestMapping(method = RequestMethod.POST) // Method POST para gravar
-	public ModelAndView gravar(@Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes) { // RedirectAttributtes - Recurso do Spring que permite enviar informações entre requisições.
+	public ModelAndView gravar(MultipartFile sumario, @Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes) { // RedirectAttributtes - Recurso do Spring que permite enviar informações entre requisições.
+		System.out.println(sumario.getOriginalFilename());
+		
 		if(result.hasErrors()) {
 			return form(produto);
 		}

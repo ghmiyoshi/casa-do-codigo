@@ -24,8 +24,13 @@ public class Produto {
 	private String descricao;
 	private int paginas;
 
-	@DateTimeFormat
+	@DateTimeFormat(pattern = "dd/MM/yyyy") // @DateTimeFormat, para que o Spring consiga converter os valores de texto para Calendar
 	private Calendar dataLancamento;
+	
+	@ElementCollection // Indica que este atributo é uma coleção de elementos
+	private List<Preco> precos;
+	
+	private String sumarioPath;
 
 	public int getId() {
 		return id;
@@ -34,9 +39,6 @@ public class Produto {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	@ElementCollection // Indica que este atributo é uma coleção de elementos
-	private List<Preco> precos;
 
 	public String getTitulo() {
 		return titulo;
@@ -78,6 +80,14 @@ public class Produto {
 		this.precos = precos;
 	}
 
+	public String getSumarioPath() {
+		return sumarioPath;
+	}
+
+	public void setSumarioPath(String sumarioPath) {
+		this.sumarioPath = sumarioPath;
+	}
+	
 	@Override
 	public String toString() {
 		return "Produto [titulo=" + titulo + ", descricao=" + descricao + ", paginas=" + paginas + "]";

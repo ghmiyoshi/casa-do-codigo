@@ -15,9 +15,10 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import br.com.alura.casadocodigo.loja.controllers.HomeController;
 import br.com.alura.casadocodigo.loja.daos.ProdutoDAO;
+import br.com.alura.casadocodigo.loja.infra.FileSaver;
 
 @EnableWebMvc // Habilita o uso do SpringMVC no projeto
-@ComponentScan(basePackageClasses = { HomeController.class, ProdutoDAO.class }) // Configuração para o Spring encontrar os controllers e daos 
+@ComponentScan(basePackageClasses = { HomeController.class, ProdutoDAO.class, FileSaver.class }) // Configuração para o Spring encontrar os controllers e daos 
 public class AppWebConfiguration {
 
 	// Metodo que ajuda o SpringMVC a encontrar as views

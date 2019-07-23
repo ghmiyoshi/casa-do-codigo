@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.alura.casadocodigo.loja.daos.ProdutoDAO;
+import br.com.alura.casadocodigo.loja.infra.FileSaver;
 import br.com.alura.casadocodigo.loja.models.Produto;
 import br.com.alura.casadocodigo.loja.models.TipoPreco;
 import br.com.alura.casadocodigo.loja.validation.ProdutoValidation;
@@ -26,6 +27,9 @@ public class ProdutosController {
 
 	@Autowired // Pede para o Spring uma instância desse objeto que foi anotado (Injeção de dependência)
 	private ProdutoDAO produtoDao;
+	
+	@Autowired
+	private FileSaver fileSaver;
 	
 	/* O Binder é o responsável por conectar duas coisas. Por exemplo, os dados do formulário com o objeto da classe Produto
 	Método para que o ProdutosController reconheça o validador, responsável por vincular o validador com o controller */
@@ -54,6 +58,9 @@ public class ProdutosController {
 		if(result.hasErrors()) {
 			return form(produto);
 		}
+		
+		String path = fileSaver.write("arquivos-sumario", sumario);
+		produto.setSumarioPath(path);
 		
 		System.out.println(produto);
 		

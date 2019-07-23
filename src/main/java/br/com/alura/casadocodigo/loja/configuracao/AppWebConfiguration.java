@@ -33,6 +33,8 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 		internalResourceView.setPrefix("/WEB-INF/views/"); // Define o caminho onde estão as views
 		internalResourceView.setSuffix(".jsp"); // Adiciona a extensão dos arquivos de view
 
+		internalResourceView.setExposedContextBeanNames("carrinhoCompras");
+		
 		return internalResourceView;
 	}
 	

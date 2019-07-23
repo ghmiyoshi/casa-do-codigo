@@ -1,8 +1,10 @@
 package br.com.alura.casadocodigo.loja.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.alura.casadocodigo.loja.daos.ProdutoDAO;
@@ -12,7 +14,8 @@ import br.com.alura.casadocodigo.loja.models.Produto;
 import br.com.alura.casadocodigo.loja.models.TipoPreco;
 
 @Controller
-@RequestMapping("carrinho")
+@RequestMapping("/carrinho")
+@Scope(value=WebApplicationContext.SCOPE_REQUEST) // O escopo de sessão, o objeto é criado para cada usuário que se conecta à aplicação, ou seja, usuários diferentes usam objetos diferentes, o que é ideal para um carrinho de compras, uma vez que cada usuário possui o seu próprio carrinho
 public class CarrinhoComprasController {
 	
 	@Autowired
@@ -21,7 +24,7 @@ public class CarrinhoComprasController {
 	@Autowired
 	private CarrinhoCompras carrinho;
 	
-	@RequestMapping("add")
+	@RequestMapping("/add")
 	public ModelAndView add(Integer produtoId, TipoPreco tipoPreco) {
 		ModelAndView modelAndView = new ModelAndView("redirect:/produtos");
 		CarrinhoItem carrinhoItem = criaItem(produtoId, tipoPreco);

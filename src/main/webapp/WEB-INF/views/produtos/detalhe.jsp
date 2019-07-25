@@ -10,6 +10,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 <link rel="icon" href="//cdn.shopify.com/s/files/1/0155/7645/t/177/assets/favicon.ico?11981592617154272979" type="image/ico" />
 <link href="https://plus.googlecom/108540024862647200608" rel="publisher" />
 
@@ -31,13 +32,13 @@
 <body>
 
 	<header id="layout-header">
-		<div class="clearfix container">
+		<div class="clearfix container" style="height: 88px;">
 			<a href="${contextPath }" id="logo"><img src="${contextPath }/resources/imagens/cdc-logo.svg" style="padding-top:0px;"/></a>
 			<div id="header-content">
 				<nav id="main-nav">
 
 					<ul class="clearfix">
-						<li><a href="/carrinho" rel="nofollow">Seu carrinho(${carrinhoCompras.quantidade})</a></li>
+						<li><a href="/carrinho" rel="nofollow">Seu carrinho</a></li>
 						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
 						<li><a href="/pages/perguntas-frequentes" rel="nofollow">Perguntas Frequentes</a></li>
 					</ul>

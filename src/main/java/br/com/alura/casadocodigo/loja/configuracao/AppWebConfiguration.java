@@ -8,6 +8,7 @@ import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -67,9 +68,14 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 	}
 	
 	// Por padrão, o Spring MVC nega o acesso à pasta resources. Consequentemente, o Tomcat não pode carregar os arquivos CSS e a página fica sem design.
-	// Por isso, a classe precisa estender a classe WebMvcConfigurerAdapter e implementar o método configureDefaultServletHandling para liberar o acesso à pasta resources.
+	// Por isso, a classe precisa estender a classe WebMvcConfigurerAdapter e implementar o método configureDefaultServletHandling para liberar o acesso à pasta resources
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 	    configurer.enable();
+	}
+	
+	@Bean
+	public RestTemplate restTemplate() { // Método para criar uma configuração básica para que o Spring consiga criar o objeto RestTemplate corretamente
+		return new RestTemplate();
 	}
 }

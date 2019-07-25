@@ -1,11 +1,11 @@
 package br.com.alura.casadocodigo.loja.configuracao;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cache.concurrent.ConcurrentMapCache;
-import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.cache.guava.GuavaCacheManager;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -15,12 +15,15 @@ import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.google.common.cache.CacheBuilder;
@@ -92,7 +95,7 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 	@Bean
 	public CacheManager cacheManager() { // Método gerenciador de cache para o Spring usar. É um mapa (guarda chave e valor)
 		
-		// Configuração para permitir que o cache fique ativo por 5 minutos e guarde 100 elementos
+		//  Guava é um framework de cache fornecido pelo Google. Essa configuração é para permitir que o cache fique ativo por 5 minutos e guarde 100 elementos
 		CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder()
 		.maximumSize(100)
 		.expireAfterAccess(5,  TimeUnit.MINUTES);
@@ -100,6 +103,19 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 		manager.setCacheBuilder(builder);
 		
 		return manager;
+	}
+	
+	@Bean
+	public ViewResolver contentNegotiation(ContentNegotiationManager manager) { // O manager é o responsável pela decisão de qual view será utilizada
+		List<ViewResolver> viewResolvers = new ArrayList<>();
+		viewResolvers.add(InternalResourceViewResolver()); // Crio uma Lista de viewResolvers e nela adiciono as duas opções de view (InternalResourceViewResolver - HTML / JsonViewResolver - JSON)
+		viewResolvers.add(new JsonViewResolver());		
+		
+		ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
+		resolver.setViewResolvers(viewResolvers); // O objeto resolver recebe a lista de Resolvers 
+		resolver.setContentNegotiationManager(manager); // O manager escolhe entre os viewsResolvers disponíveis
+		
+		return resolver;
 	}
 	
 }

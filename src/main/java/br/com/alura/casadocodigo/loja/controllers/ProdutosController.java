@@ -97,5 +97,13 @@ public class ProdutosController {
 		
 		return modelAndView ;
 	}
+	
+//	@RequestMapping("/{id}")
+//	@ResponseBody
+//	public Produto detalheJson(@PathVariable("id") Integer id) { // PathVariable - É uma variável que está no path, na url do navegador, que irá ligar no mapeamento "/detalhehttps://github.com/ghmiyoshi/casa-do-codigo.git/id"
+//		
+//		return produtoDao.find(id);
+//		
+//	}
 
 }

@@ -1,5 +1,9 @@
 package br.com.alura.casadocodigo.loja.configuracao;
 
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCache;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -23,6 +27,7 @@ import br.com.alura.casadocodigo.loja.models.CarrinhoCompras;
 
 @EnableWebMvc // Habilita o uso do SpringMVC no projeto
 @ComponentScan(basePackageClasses = { HomeController.class, ProdutoDAO.class, FileSaver.class, CarrinhoCompras.class }) // Configuração para o Spring encontrar/scannear os controllers, daos e outras classes 
+@EnableCaching // Habilita o  cache, um recurso que permite guardar informações no contexto da aplicação
 public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 
 	// Metodo que ajuda o SpringMVC a encontrar as views
@@ -77,5 +82,10 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 	@Bean
 	public RestTemplate restTemplate() { // Método para criar uma configuração básica para que o Spring consiga criar o objeto RestTemplate corretamente
 		return new RestTemplate();
+	}
+	
+	@Bean
+	public CacheManager cacheManager() { // Método gerenciador de cache para o Spring usar.
+		return new ConcurrentMapCacheManager();
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -53,6 +54,7 @@ public class ProdutosController {
 	/* @Valid -  Faz com que o produto seja validado
 	BindingResult - Pega os erros obtidos durante a validação. Para que isso funcione, é necessário adicionar logo em seguida do objeto que será validado */
 	@RequestMapping(method = RequestMethod.POST) // Method POST para gravar
+	@CacheEvict(value="produtosHome", allEntries = true) // Tira do cache os produtos quando esse método for chamado através do valor(produtosHome). allEntries, todas as entradas/valores
 	public ModelAndView gravar(MultipartFile sumario, @Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes) { // RedirectAttributtes - Recurso do Spring que permite enviar informações entre requisições.
 		System.out.println(sumario.getOriginalFilename()); 
 		

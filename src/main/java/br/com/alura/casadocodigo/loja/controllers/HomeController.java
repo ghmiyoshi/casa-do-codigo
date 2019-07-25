@@ -19,7 +19,7 @@ public class HomeController {
 	
 	// O controler retorna uma String que representa o nome da view que o SpringMVC espera receber	
 	@RequestMapping("/")
-	@Cacheable(value="produtoHome")
+	@Cacheable(value="produtosHome")
 	public ModelAndView index() {
 		System.out.println("Entrando na HOME da Casa do Código");
 		

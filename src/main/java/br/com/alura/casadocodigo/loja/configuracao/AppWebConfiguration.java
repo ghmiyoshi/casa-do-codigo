@@ -1,9 +1,12 @@
 package br.com.alura.casadocodigo.loja.configuracao;
 
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.concurrent.ConcurrentMapCache;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
+import org.springframework.cache.guava.GuavaCacheManager;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,6 +22,8 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+import com.google.common.cache.CacheBuilder;
 
 import br.com.alura.casadocodigo.loja.controllers.HomeController;
 import br.com.alura.casadocodigo.loja.daos.ProdutoDAO;
@@ -85,7 +90,16 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 	}
 	
 	@Bean
-	public CacheManager cacheManager() { // Método gerenciador de cache para o Spring usar.
-		return new ConcurrentMapCacheManager();
+	public CacheManager cacheManager() { // Método gerenciador de cache para o Spring usar. É um mapa (guarda chave e valor)
+		
+		// Configuração para permitir que o cache fique ativo por 5 minutos e guarde 100 elementos
+		CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder()
+		.maximumSize(100)
+		.expireAfterAccess(5,  TimeUnit.MINUTES);
+		GuavaCacheManager manager = new GuavaCacheManager();
+		manager.setCacheBuilder(builder);
+		
+		return manager;
 	}
+	
 }

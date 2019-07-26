@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -63,13 +64,13 @@ public class ProdutosController {
 		}
 		
 		String path = fileSaver.write("arquivos-sumario", sumario);
-		produto.setSumarioPath(path);
+		produto.setSumario(path);
 		
 		System.out.println(produto);
 		
 		produtoDao.gravar(produto);
 		
-		 redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso!"); // Atributos do tipo Flash só duram até a próxima requisição, ou seja, transportam informações de uma requisição para a outra e deixam de existir.
+		redirectAttributes.addFlashAttribute("sucesso", "Produto cadastrado com sucesso!"); // Atributos do tipo Flash só duram até a próxima requisição, ou seja, transportam informações de uma requisição para a outra e deixam de existir.
 		 
 		 /* redirect, passa um status 302 para o navegador carregar uma outra página e esquecer dos dados da requisição anterior.
 		 Para evitar qualquer problema de dados reenviados, realizamos um redirect após um formulário com POST. Pois ao fazer F5 o navegador repete o ultimo request que ele realizou, e quando esse resquest é um POST, 

@@ -9,7 +9,8 @@
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/css/bootstrap-theme.min.css">
 <link rel="icon" href="//cdn.shopify.com/s/files/1/0155/7645/t/177/assets/favicon.ico?11981592617154272979" type="image/ico" />
 <link href="https://plus.googlecom/108540024862647200608" rel="publisher" />
 <title>Livros de Java, SOA, Android, iPhone, Ruby on Rails e muito mais - Casa do Código</title>
@@ -35,9 +36,10 @@
 			<div id="header-content">
 				<nav id="main-nav">
 					<ul class="clearfix">
+						<li><a href="${s:mvcUrl('PC#listar').build() }" rel="nofollow">Lista de Produtos</a></li>
+						<li><a href="${s:mvcUrl('PC#form').build() }" rel="nofollow">Cadastro de Produtos</a></li>
 						<li><a href="${s:mvcUrl('CCC#itens').build() }" rel="nofollow">Seu carrinho</a></li>
 						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
-						<li><a href="/pages/perguntas-frequentes" rel="nofollow">Perguntas Frequentes</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -80,7 +82,7 @@
 			<li class="col-left">
 				<h3>E-books sem DRM. Leia onde quiser</h3>
 				<p>
-				<span class="sprite" id="sprite-renome"></span>Nossos e-books não possuem DRM, ou seja, você pode ler em qualquer computador, tablet e smartphone.
+				<span class="sprite" id="sprite-renome" style="width: 48px; height: 44px;"></span>Nossos e-books não possuem DRM, ou seja, você pode ler em qualquer computador, tablet e smartphone.
 				</p>
 			</li>
 			<li class="col-right">

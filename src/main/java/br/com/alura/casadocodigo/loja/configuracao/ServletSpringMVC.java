@@ -11,13 +11,13 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
-	protected Class<?>[] getRootConfigClasses() { // Carrega configurações logo ao iniciar a aplicação
-		return new Class[] {SecurityConfiguration.class};
+	protected Class<?>[] getRootConfigClasses() {
+		return new Class[]{SecurityConfiguration.class, AppWebConfiguration.class, JPAConfiguration.class };
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] { AppWebConfiguration.class, JPAConfiguration.class };
+		return new Class[] {};
 	}
 
 	@Override
@@ -40,7 +40,6 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 	@Override
 	protected void customizeRegistration(Dynamic registration) {
 		registration.setMultipartConfig(new MultipartConfigElement(""));
-	
 	}
 
 }

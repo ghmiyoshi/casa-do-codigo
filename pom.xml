@@ -89,6 +89,7 @@
 			<scope>runtime</scope>
 		</dependency>
 
+		<!-- dependencias hibernate e jpa -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
@@ -113,6 +114,7 @@
 			<version>4.1.0.RELEASE</version>
 		</dependency>
 		
+		<!-- dependencia driver mysql -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -144,42 +146,40 @@
 		    <version>2.5.1</version>
 		</dependency>
 		
-		<!-- Cache Guava -->
+		<!-- dependencias do guava (cache) -->
 		<dependency>
-		    <groupId>com.google.guava</groupId>
-		    <artifactId>guava</artifactId>
-		    <version>18.0</version>
-		</dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>4.1.0.RELEASE</version>
+        </dependency>
 
 		<!-- Spring Security  -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-			<version>4.1.5.RELEASE</version>
-		</dependency>
-		
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-config</artifactId>
 		    <version>4.0.0.RELEASE</version>
 		</dependency>
-		
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-taglibs</artifactId>
 		    <version>4.0.0.RELEASE</version>
 		</dependency>
-		
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-web</artifactId>
 		    <version>4.0.0.RELEASE</version>
 		</dependency>
-		
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-core</artifactId>
 		    <version>4.0.0.RELEASE</version>
-		</dependency>		
+		</dependency>
+		
 	</dependencies>
 </project>

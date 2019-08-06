@@ -64,7 +64,7 @@ public class ProdutosController {
 		}
 		
 		String path = fileSaver.write("arquivos-sumario", sumario);
-		produto.setSumario(path);
+		produto.setSumarioPath(path);
 		
 		System.out.println(produto);
 		

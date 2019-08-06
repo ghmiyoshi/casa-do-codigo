@@ -32,7 +32,7 @@ public class Produto {
 	@ElementCollection // Indica que este atributo é uma coleção de elementos
 	private List<Preco> precos;
 
-	private String sumario;
+	private String sumarioPath;
 
 	public int getId() {
 		return id;
@@ -82,12 +82,12 @@ public class Produto {
 		this.precos = precos;
 	}
 
-	public String getSumario() {
-		return sumario;
+	public String getSumarioPath() {
+		return sumarioPath;
 	}
 
-	public void setSumario(String sumario) {
-		this.sumario = sumario;
+	public void setSumarioPath(String sumarioPath) {
+		this.sumarioPath = sumarioPath;
 	}
 
 	@Override

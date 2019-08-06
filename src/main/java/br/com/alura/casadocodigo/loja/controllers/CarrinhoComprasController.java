@@ -40,7 +40,7 @@ public class CarrinhoComprasController implements Serializable {
 		return modelAndView ;
 	}
 	
-	@RequestMapping(method =RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView itens() {
 		return new ModelAndView("carrinho/itens");
 	}
@@ -57,7 +57,6 @@ public class CarrinhoComprasController implements Serializable {
 		carrinho.remover(produtoId, tipoPreco);
 		
 		return new ModelAndView("redirect:/carrinho");
-		
 	}
 
 }

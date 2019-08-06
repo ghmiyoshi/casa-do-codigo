@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 <c:url value="/resources/css" var="cssPath"/>
 <link rel="stylesheet" href="${cssPath}/bootstrap.min.css">
 <link rel="stylesheet" href="${cssPath}/bootstrap-theme.min.css">
-<title>Livros de Java, Android, iPhone, PHP e muitos mais - Casa do CÛdigo</title>
+<title>Livros de Java, Android, iPhone, PHP e muitos mais - Casa do C√≥digo</title>
 </head>
 <body style="padding: 60px;">
 
@@ -23,10 +24,10 @@
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
 	      </button>
-	      <a class="navbar-brand" href="#">Casa do CÛdigo</a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	      <ul class="nav navbar-nav">
+	      	<li><a class="navbar-brand" href="/casa-do-codigo">Casa do C√≥digo</a></li>
 	        <li><a href="${s:mvcUrl('PC#listar').build()}">Lista de Produtos</a></li>
 	        <li><a href="${s:mvcUrl('PC#form').build()}">Cadastro de Produtos</a></li>
 	      </ul>
@@ -37,24 +38,24 @@
 	<div class="container">
 	<h1>Cadastro de produto</h1>
 
-	<!-- Coloca form nos inputs para n„o perder as informaÁıes se um campo estiver inv·lido -->
-	<!-- Para isso funcionar, o mÈtodo form() do ProdutoController precisa receber um Produto -->
-	<!-- enctype - Na hora de enviar o request, indicamos que o formulario est· enviando um arquivo de multinformaÁıes texto e arquivo  -->
+	<!-- Coloca form nos inputs para n√£o perder as informa√ß√µes se um campo estiver inv√°lido -->
+	<!-- Para isso funcionar, o m√©todo form() do ProdutoController precisa receber um Produto -->
+	<!-- enctype - Na hora de enviar o request, indicamos que o formulario est√° enviando um arquivo de multinforma√ß√µes texto e arquivo  -->
 	<form:form action="${s:mvcUrl('PC#gravar').build() }" method="POST" commandName="produto" enctype="multipart/form-data">
 		<div class="form-group">
-			<label>TÌtulo</label>
+			<label>T√≠tulo</label>
 			<form:input path="titulo" cssClass="form-control"/>
 			<form:errors path="titulo"/>
 		</div>
 		
 		<div class="form-group">
-			<label>DescriÁ„o</label>
+			<label>Descri√ß√£o</label>
 			<form:textarea path="descricao" cssClass="form-control"/>
 			<form:errors path="descricao"/>
 		</div>
 		
 		<div class="form-group">
-			<label>P·ginas</label>
+			<label>P√°ginas</label>
 			<form:input path="paginas" cssClass="form-control" />
 			<form:errors path="paginas"/>
 		</div>
@@ -74,7 +75,7 @@
 		</c:forEach>
 		
 	<div class="form-group">
-		<label>Sum·rio</label>
+		<label>Sum√°rio</label>
 		<input name="sumario" type="file" class="form-control">
 	</div>	
 		

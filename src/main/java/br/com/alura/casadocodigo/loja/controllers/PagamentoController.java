@@ -45,7 +45,6 @@ public class PagamentoController {
 				System.out.println(e);
 				return new ModelAndView("redirect:/produtos");
 			}
-
 		};
 	}
 

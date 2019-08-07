@@ -1,5 +1,20 @@
-<%@ include file="/WEB-INF/views/cabecalho.jsp" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags"%>
 
+<c:url value="/" var="contextPath" />
+<tags:pageTemplate titulo="Seu carrinho de compras">
+	
+	<jsp:attribute name="extraScripts">
+        <script>
+            console.log("Finalização de compra de ${carrinhoCompras.quantidade} itens");
+        </script>
+    </jsp:attribute>
+	<jsp:body>
+	
 	<section class="container middle">
 		<h2 id="cart-title">Seu carrinho de compras</h2>
 		<table id="cart-table">
@@ -43,10 +58,11 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<td colspan="3">
+					<td colspan="4">
 						<form:form action="${s:mvcUrl('PC#finalizar').build() }" method="post">
-							<input type="submit" class="checkout" name="checkout" value="Finalizar compra" /></td>
+							<input type="submit" class="checkout" name="checkout" value="Finalizar compra" />
 						</form:form>
+						</td>
 					<td class="numeric-cell">${carrinhoCompras.total }</td><td></td>
 				</tr>
 			</tfoot>
@@ -62,11 +78,10 @@
 		</ul>
 
 		<h2>
-			<a href="http://www.casadocodigo.com.br">Veja todos os livros que publicamos!</a>
+			<a href="${s:mvcUrl('HC#index').build() }">Veja todos os livros que publicamos!</a>
 		</h2>
 	</section>
-
-	<%@ include file="/WEB-INF/views/rodape.jsp" %>
 	
-</body>
-</html>
+	</jsp:body>
+	
+	</tags:pageTemplate>

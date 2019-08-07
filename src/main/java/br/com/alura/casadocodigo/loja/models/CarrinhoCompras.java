@@ -1,5 +1,6 @@
 package br.com.alura.casadocodigo.loja.models;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.LinkedHashMap;
@@ -12,9 +13,11 @@ import org.springframework.web.context.WebApplicationContext;
 
 @Component // Usamos @Component para o Spring conhecer esse objeto que não é uma controller, dao e nenhum outro tipo de objeto específico
 @Scope(value=WebApplicationContext.SCOPE_SESSION, proxyMode= ScopedProxyMode.TARGET_CLASS) // SCOPE_APPLICATION - Desde que o servidor é iniciado, no escopo de aplicação, apenas um objeto na memória é manipulado, o que causa conflito quando temos mais de um usuário usando a nossa aplicação
-public class CarrinhoCompras {
+public class CarrinhoCompras implements Serializable {
 	
-	private Map<CarrinhoItem, Integer> itens = new LinkedHashMap<CarrinhoItem, Integer>();
+	private static final long serialVersionUID = 1L;
+	
+	private Map<CarrinhoItem, Integer> itens = new LinkedHashMap<>();
 	
 	public Collection<CarrinhoItem> getItens(){
 		return itens.keySet(); // Retorna uma lista de carrinhoItem
@@ -51,6 +54,10 @@ public class CarrinhoCompras {
 		Produto produto = new Produto();
 		produto.setId(produtoId);
 		itens.remove(new CarrinhoItem(produto, tipoPreco));
+	}
+	
+	public void limpa() {
+		this.itens.clear();
 	}
 
 }

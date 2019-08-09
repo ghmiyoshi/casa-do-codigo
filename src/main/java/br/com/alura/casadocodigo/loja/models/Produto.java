@@ -1,6 +1,7 @@
 package br.com.alura.casadocodigo.loja.models;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class Produto {
 	private Calendar dataLancamento;
 
 	@ElementCollection // Indica que este atributo é uma coleção de elementos
-	private List<Preco> precos;
+	private List<Preco> precos = new ArrayList<>();
 
 	private String sumarioPath;
 

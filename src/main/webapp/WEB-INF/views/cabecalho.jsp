@@ -16,7 +16,7 @@
 								</fmt:message> Outra forma de fazer internacionalização -->
 							<s:message code="menu.carrinho" arguments="${carrinhoCompras.quantidade }"></s:message> 
 						</a></li>
-						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós
+						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">
 							<fmt:message key="menu.sobre" />
 						</a></li>
 						<li><a href="?locale=pt" rel="nofollow">

@@ -52,7 +52,8 @@
 		<tr>
 			<th>Título</th>
 			<th>Descrição</th>
-			<th>Páginas</th>			
+			<th>Preços</th>			
+			<th>Páginas</th>
 		</tr>
 		
 		<c:forEach items="${produtos }" var="produto">
@@ -61,6 +62,7 @@
 					<a href="${s:mvcUrl('PC#detalhe').arg(0,produto.id).build() }">${produto.titulo }
 				</td>
 				<td>${produto.descricao }</td>
+				<td>${produto.precos }</td>
 				<td>${produto.paginas }</td>
 			</tr>
 		</c:forEach>

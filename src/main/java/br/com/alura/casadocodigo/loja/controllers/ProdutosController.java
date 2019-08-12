@@ -9,11 +9,11 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -94,7 +94,7 @@ public class ProdutosController {
 		ModelAndView modelAndView = new ModelAndView("produtos/detalhe");
 
 		Produto produto = produtoDao.find(id);
-		modelAndView.addObject(produto);
+		modelAndView.addObject("produto", produto);
 		
 		return modelAndView ;
 	}

@@ -181,7 +181,7 @@
 		    <version>4.0.0.RELEASE</version>
 		</dependency>
 		
-			<!-- dependencias de teste -->
+		<!-- dependencias de teste -->
 		<dependency>
 		    <groupId>junit</groupId>
 		    <artifactId>junit</artifactId>

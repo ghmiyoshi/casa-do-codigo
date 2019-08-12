@@ -4,6 +4,7 @@ import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration.Dynamic;
 
+import org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -32,7 +33,8 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 		CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
 		characterEncodingFilter.setEncoding("UTF-8");
 		
-		return new Filter[] {characterEncodingFilter}; 
+		// OpenEntityManagerInViewFilter - Para resolver o LazyInitializationException que é a tentativa do Hibernate de carregar dados relacionados de uma entidade, de forma tardia ou atrasada 
+		return new Filter[] {characterEncodingFilter, new OpenEntityManagerInViewFilter()}; 
 	}
 	
 	// Qual parte que será configurada como arquivo, vai ter barra, vai ter algo especifico dividindo o path, etc? 

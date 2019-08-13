@@ -1,4 +1,4 @@
-package br.com.alura.casadocodigo.loja.configuracao;
+package br.com.alura.casadocodigo.loja.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;

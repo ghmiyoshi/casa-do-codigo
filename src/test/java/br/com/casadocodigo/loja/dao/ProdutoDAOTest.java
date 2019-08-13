@@ -13,8 +13,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.alura.casadocodigo.loja.builders.ProdutoBuilder;
-import br.com.alura.casadocodigo.loja.configuracao.DataSourceConfigurationTest;
-import br.com.alura.casadocodigo.loja.configuracao.JPAConfiguration;
+import br.com.alura.casadocodigo.loja.configuration.DataSourceConfigurationTest;
+import br.com.alura.casadocodigo.loja.configuration.JPAConfiguration;
 import br.com.alura.casadocodigo.loja.daos.ProdutoDAO;
 import br.com.alura.casadocodigo.loja.models.Produto;
 import br.com.alura.casadocodigo.loja.models.TipoPreco;

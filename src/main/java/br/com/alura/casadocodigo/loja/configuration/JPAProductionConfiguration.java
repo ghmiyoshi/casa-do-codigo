@@ -1,4 +1,4 @@
-package br.com.alura.casadocodigo.loja.configuracao;
+package br.com.alura.casadocodigo.loja.configuration;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -9,7 +9,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+@EnableTransactionManagement
 @Profile("prod")
 public class JPAProductionConfiguration {
 

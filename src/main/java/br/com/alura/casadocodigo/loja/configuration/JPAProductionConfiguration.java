@@ -25,6 +25,7 @@ public class JPAProductionConfiguration {
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 		properties.setProperty("hibernate.show_sql", "true");
 		properties.setProperty("hibernate.hbm2ddl.auto", "update");
+		
 		return properties;
 	}
 
@@ -37,9 +38,9 @@ public class JPAProductionConfiguration {
 		// usuario:senha@host:port:path
 		URI dbUrl = new URI(environment.getProperty("DATABASE_URL"));
 
+		dataSource.setUrl("jdbc:postgresql://" + dbUrl.getHost() + ":" + dbUrl.getPort() + dbUrl.getPath());
 		dataSource.setUsername(dbUrl.getUserInfo().split(":")[0]);
 		dataSource.setPassword(dbUrl.getUserInfo().split(":")[1]);
-		dataSource.setUrl("jdbc:postgres://" + dbUrl.getHost() + ":" + dbUrl.getPort() + dbUrl.getPath());
 
 		return dataSource;
 	}

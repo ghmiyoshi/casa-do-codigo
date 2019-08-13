@@ -19,7 +19,7 @@ public class JPAProductionConfiguration {
 	private Environment environment;
 
 	@Bean
-	public Properties aditionalProperties() {
+	public Properties additionalProperties() {
 		// Properties para poder setar algumas configurações
 		Properties properties = new Properties();
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");

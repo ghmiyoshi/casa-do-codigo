@@ -101,7 +101,6 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter {
 	
 	@Bean
 	public CacheManager cacheManager() { // Método gerenciador de cache para o Spring usar. É um mapa (guarda chave e valor)
-		
 		//  Guava é um framework de cache fornecido pelo Google. Essa configuração é para permitir que o cache fique ativo por 5 minutos e guarde 100 elementos
 		CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder()
 		.maximumSize(100)

@@ -20,7 +20,7 @@ public class JPAConfiguration {
 	@Bean // Anotação para que o retorno da chamada deste metódo possa ser gerenciada pelo SpringMVC
 	// Método que será usado pelo Spring para gerar o EntityManager
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory(
-			DataSource dataSource, Properties additionaProperties) {
+			DataSource dataSource, Properties additionalProperties) {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 
 		// Setar onde o EntityManager encontrará nossos Models
@@ -30,7 +30,7 @@ public class JPAConfiguration {
 		// Adapter que o Hibernate disponibiliza
 		JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 		factoryBean.setJpaVendorAdapter(vendorAdapter);
-		factoryBean.setJpaProperties(aditionalProperties());
+		factoryBean.setJpaProperties(additionalProperties);
 
 		// Retornar as configurações para o Spring poder utiliza-las.
 		return factoryBean;
@@ -38,7 +38,7 @@ public class JPAConfiguration {
 
 	@Bean
 	@Profile("dev")
-	public Properties aditionalProperties() {
+	public Properties additionalProperties() {
 		// Properties para poder setar algumas configurações
 		Properties properties = new Properties();
 		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");

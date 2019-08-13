@@ -1,7 +1,10 @@
 package br.com.alura.casadocodigo.loja.configuracao;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.Properties;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
@@ -10,8 +13,9 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 @Profile("prod")
 public class JPAProductionConfiguration {
 
+	@Autowired
 	private Environment environment;
-	
+
 	@Bean
 	public Properties aditionalProperties() {
 		// Properties para poder setar algumas configurações
@@ -23,15 +27,17 @@ public class JPAProductionConfiguration {
 	}
 
 	@Bean
-	public DriverManagerDataSource dataSource() {
+	public DriverManagerDataSource dataSource() throws URISyntaxException {
 		// DataSource que contém as configurações de banco de dados
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.postgresql.Driver");
-		
-		environment.getProperty("DATABASE_URL");
-		dataSource.setUsername("root");
-		dataSource.setPassword("");
-		dataSource.setUrl("jdbc:mysql://localhost/casadocodigo");
+
+		// usuario:senha@host:port:path
+		URI dbUrl = new URI(environment.getProperty("DATABASE_URL"));
+
+		dataSource.setUsername(dbUrl.getUserInfo().split(":")[0]);
+		dataSource.setPassword(dbUrl.getUserInfo().split(":")[1]);
+		dataSource.setUrl("jdbc:postgres://" + dbUrl.getHost() + ":" + dbUrl.getPort() + dbUrl.getPath());
 
 		return dataSource;
 	}

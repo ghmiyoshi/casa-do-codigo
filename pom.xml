@@ -9,7 +9,7 @@
 	<packaging>war</packaging>
 
 	<build>
-		<finalName>casadocodigo</finalName>
+		<finalName>casa-do-codigo</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>

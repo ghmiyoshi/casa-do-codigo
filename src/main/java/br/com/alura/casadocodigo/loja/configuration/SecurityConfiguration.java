@@ -25,9 +25,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/produtos/form").hasRole("ADMIN")
 				.antMatchers("/carrinho/**").permitAll()
 				.antMatchers("/pagamento/**").permitAll()
+				.antMatchers("/produtos/**").permitAll()
 				.antMatchers(HttpMethod.POST, "/produtos").hasRole("ADMIN")
 				.antMatchers(HttpMethod.GET, "/produtos").hasRole("ADMIN")
-				.antMatchers("/produtos/**").permitAll()
 				.antMatchers("/").permitAll().anyRequest()
 				.authenticated() // Todos os requests precisam estar autenticados
 				.and().formLogin().loginPage("/login") // Se ele não estiver autenticado é direcionado para o formulário de login
